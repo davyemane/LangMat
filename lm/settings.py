@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+ 
 import os
 from pathlib import Path
 from rest_framework import permissions, authentication
@@ -47,7 +47,18 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
     "corsheaders",
+    'culture',
+    'users',
+    'inscription',
+    'ExpressionOraleEcrite',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
 ]
+SITE_ID = 3
 
 from datetime import timedelta
 
@@ -76,10 +87,16 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'lm.urls'
 
+OCIALACCOUNT_PROVIDERS = {
+  'frontier': {
+    'SCOPE': ['auth', 'capi'],
+    'VERIFIED_EMAIL': True
+  },
+}
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,7 +146,7 @@ REST_FRAMEWORK = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase.sqlite3',
+        'NAME': 'db.sqlite3',
     }
 }
 
@@ -195,3 +212,11 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = './media/'
 MEDIA_URL = '/media/'
+
+LOGIN_REDIRECT_URL = "/auths/home"
+LOGOUT_REDIRECT_URL = "/auths"
+
+
+
+
+34.85.26.28 
