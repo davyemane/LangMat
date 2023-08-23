@@ -1,18 +1,18 @@
 from django.db import models
 from django.db.models import Q
 
-class ChampQuerySet(models.QuerySet):
-    def search(self, query, user= None):
-        return self.filter(NomChamp__icontains=query)
+# class ChampQuerySet(models.QuerySet):
+#     def search(self, query, User= None):
+#         return self.filter(NomChamp__icontains=query)
 
 class ChampManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset()
 
-    def search(self, query, user=None):
-        Lookup= Q(NomChamp__icontains=query)
-        qs = self.filter(Lookup)
-        return self.get_queryset().search(query, user)
+#     def search(self, query, user=None):
+#         Lookup= Q(NomChamp__icontains=query)
+#         qs = self.filter(Lookup)
+#         return self.get_queryset().search(query, user)
 
 
 

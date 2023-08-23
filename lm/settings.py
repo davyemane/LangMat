@@ -52,10 +52,10 @@ INSTALLED_APPS = [
     'inscription',
     'ExpressionOraleEcrite',
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
+    #'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
 
 ]
 SITE_ID = 3
@@ -87,12 +87,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'lm.urls'
 
-OCIALACCOUNT_PROVIDERS = {
-  'frontier': {
-    'SCOPE': ['auth', 'capi'],
-    'VERIFIED_EMAIL': True
-  },
-}
+# # OCIALACCOUNT_PROVIDERS = {
+# #   'frontier': {
+# #     'SCOPE': ['auth', 'capi'],
+# #     'VERIFIED_EMAIL': True
+# #   },
+# }
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -129,26 +129,26 @@ REST_FRAMEWORK = {
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-#DATABASES = {
- #   'default': {
-  #      'ENGINE': 'django.db.backends.mysql',
-   #     'NAME': 'langmats',
-    #    'USER': 'davy',
-     #   'PASSWORD': '2002',
-      #  'HOST': 'localhost',
-       # 'PORT': '3306',
-        #'OPTIONS':{
-         #   'init_command':"SET sql_mode='STRICT_TRANS_TABLES'",
-       # }
-   # }
-#}
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
-    }
+   'default': {
+       'ENGINE': 'django.db.backends.mysql',
+       'NAME': 'lm',
+       'USER': 'root',
+       'PASSWORD': 'Felicien-2002',
+       'HOST': 'localhost',
+       'PORT': '3306',
+        'OPTIONS':{
+           'init_command':"SET sql_mode='STRICT_TRANS_TABLES'",
+       }
+   }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'db1.sqlite3',
+#     }
+# }
 
 
 # Password validation
@@ -217,6 +217,4 @@ LOGIN_REDIRECT_URL = "/auths/home"
 LOGOUT_REDIRECT_URL = "/auths"
 
 
-
-
-34.85.26.28 
+AUTH_USER_MODEL = 'users.User'

@@ -1,17 +1,15 @@
-from django.db import models
-from django.contrib.auth.models import User
+from django.db import models 
+from django.contrib.auth.models import AbstractUser
+from formation.models import Langue
 
+class User(AbstractUser):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    username= None
+    email = models.CharField(max_length=255, unique=True)
+    password = models.CharField(max_length=255)
+    langue = models.ForeignKey(Langue, on_delete=models.CASCADE, default='1')
 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
-
-class Langue(models.Model):
-    id_langue = models.AutoField(null=False, primary_key=True)
-    libelleLangue=models.TextField(null= False)
-    def __str__(self):
-        return self.libelleLangue 
-
-
-class UserLangue(models.Model):
-    users = models.ForeignKey(User,on_delete=models.CASCADE)
-    langue = models.ForeignKey (Langue, on_delete=models.CASCADE)
-# Create your models here.
